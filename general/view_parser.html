@@ -375,11 +375,11 @@ corresponding to your variable pair data. Consider this example:</p>
         <span class="s1">&#39;blog_title&#39;</span>   <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Title&#39;</span><span class="p">,</span>
         <span class="s1">&#39;blog_heading&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;My Blog Heading&#39;</span><span class="p">,</span>
         <span class="s1">&#39;blog_entries&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
-                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 1&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 1&#39;</span><span class="p">),</span>
-                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 2&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 2&#39;</span><span class="p">),</span>
-                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 3&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 3&#39;</span><span class="p">),</span>
-                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 4&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 4&#39;</span><span class="p">),</span>
-                <span class="k">array</span><span class="p">(</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 5&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 5&#39;</span><span class="p">)</span>
+                <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 1&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 1&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 2&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 2&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 3&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 3&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 4&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 4&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;title&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title 5&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Body 5&#39;</span><span class="p">]</span>
         <span class="p">)</span>
 <span class="p">);</span>
 
@@ -405,6 +405,14 @@ method:</p>
              <span class="o">-&gt;</span><span class="na">render</span><span class="p">(</span><span class="s1">&#39;blog_template&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+<p>If the array you are trying to loop over contains objects instead of arrays,
+the parser will first look for an <code class="docutils literal"><span class="pre">asArray</span></code> method on the object. If it exists,
+that method will be called and the resulting array is then looped over just as
+described above. If no <code class="docutils literal"><span class="pre">asArray</span></code> method exists, the object will be cast as
+an array and its public properties will be made available to the Parser.</p>
+<p>This is especially useful with the Entity classes, which has an asArray method
+that returns all public and protected properties (minus the _options property) and
+makes them available to the Parser.</p>
 </div>
 <div class="section" id="nested-substitutions">
 <h3>Nested Substitutions<a class="headerlink" href="#nested-substitutions" title="Permalink to this headline">¶</a></h3>
@@ -498,7 +506,7 @@ section will stay exactly as it is, with no variable substitution, looping, etc,
 <h3>Conditional Logic<a class="headerlink" href="#conditional-logic" title="Permalink to this headline">¶</a></h3>
 <p>The Parser class supports some basic conditionals to handle <code class="docutils literal"><span class="pre">if</span></code>, <code class="docutils literal"><span class="pre">else</span></code>, and <code class="docutils literal"><span class="pre">elseif</span></code> syntax. All <code class="docutils literal"><span class="pre">if</span></code>
 blocks must be closed with an <code class="docutils literal"><span class="pre">endif</span></code> tag:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="k">if</span> <span class="nx">role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span><span class="p">}</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="k">if</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span><span class="p">}</span>
         <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Admin</span><span class="o">!&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
 <span class="p">{</span><span class="k">endif</span><span class="p">}</span>
 </pre></div>
@@ -512,9 +520,9 @@ blocks must be closed with an <code class="docutils literal"><span class="pre">e
 <p>All variables used within if statements must have been previously set with the same name. Other than that, it is
 treated exactly like a standard PHP conditional, and all standard PHP rules would apply here. You can use any
 of the comparison operators you would normally, like <code class="docutils literal"><span class="pre">==</span></code>, <code class="docutils literal"><span class="pre">===</span></code>, <code class="docutils literal"><span class="pre">!==</span></code>, <code class="docutils literal"><span class="pre">&lt;</span></code>, <code class="docutils literal"><span class="pre">&gt;</span></code>, etc.</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="k">if</span> <span class="nx">role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span><span class="p">}</span>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="k">if</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;admin&#39;</span><span class="p">}</span>
         <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Admin</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
-<span class="p">{</span><span class="k">elseif</span> <span class="nx">role</span><span class="o">==</span><span class="s1">&#39;moderator&#39;</span><span class="p">}</span>
+<span class="p">{</span><span class="k">elseif</span> <span class="nv">$role</span><span class="o">==</span><span class="s1">&#39;moderator&#39;</span><span class="p">}</span>
         <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">Moderator</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
 <span class="p">{</span><span class="k">else</span><span class="p">}</span>
         <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span><span class="p">,</span> <span class="nx">User</span><span class="o">&lt;/</span><span class="nx">h1</span><span class="o">&gt;</span>
@@ -775,25 +783,35 @@ key/value pairs:</p>
 <td>Alias for the previous_url helper function.</td>
 <td>{+ previous_url +}</td>
 </tr>
-<tr class="row-even"><td>mailto</td>
+<tr class="row-even"><td>site_url</td>
+<td>&nbsp;</td>
+<td>Alias for the site_url helper function.</td>
+<td>{+ site_url &#8220;login&#8221; +}</td>
+</tr>
+<tr class="row-odd"><td>mailto</td>
 <td>email, title, attributes</td>
 <td>Alias for the mailto helper function.</td>
 <td>{+ mailto <a class="reference external" href="mailto:email=foo&#37;&#52;&#48;example&#46;com">email=foo<span>&#64;</span>example<span>&#46;</span>com</a> title=&#8221;Stranger Things&#8221; +}</td>
 </tr>
-<tr class="row-odd"><td>safe_mailto</td>
+<tr class="row-even"><td>safe_mailto</td>
 <td>email, title, attributes</td>
 <td>Alias for the safe_mailto helper function.</td>
 <td>{+ safe_mailto <a class="reference external" href="mailto:email=foo&#37;&#52;&#48;example&#46;com">email=foo<span>&#64;</span>example<span>&#46;</span>com</a> title=&#8221;Stranger Things&#8221; +}</td>
 </tr>
-<tr class="row-even"><td>lang</td>
+<tr class="row-odd"><td>lang</td>
 <td>language string</td>
 <td>Alias for the lang helper function.</td>
 <td>{+ lang number.terabyteAbbr +}</td>
 </tr>
-<tr class="row-odd"><td>validation_errors</td>
+<tr class="row-even"><td>validation_errors</td>
 <td>fieldname(optional)</td>
 <td>Returns either error string for the field (if specified) or all validation errors.</td>
 <td>{+ validation_errors +} , {+ validation_errors field=&#8221;email&#8221; +}</td>
+</tr>
+<tr class="row-odd"><td>route</td>
+<td>route name</td>
+<td>Alias for the route_to helper function.</td>
+<td>{+ route &#8220;login&#8221; +}</td>
 </tr>
 </tbody>
 </table>
@@ -1134,7 +1152,7 @@ substitutions are performed for each data pair.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014-2018 British Columbia Institute of Technology.
-      Last updated on Jul 07, 2018.
+      Last updated on Aug 29, 2018.
 
     </p>
   </div>
