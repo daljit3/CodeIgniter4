@@ -1021,34 +1021,39 @@ column and value to ignore, useful when updating records to ignore itself.</td>
 <td>Fails if field contains anything other than valid Base64 characters.</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>valid_email</td>
+<tr class="row-odd"><td>valid_json</td>
+<td>No</td>
+<td>Fails if field does not contain a valid JSON string.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>valid_email</td>
 <td>No</td>
 <td>Fails if field does not contain a valid email address.</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td>valid_emails</td>
+<tr class="row-odd"><td>valid_emails</td>
 <td>No</td>
 <td>Fails if any value provided in a comma separated list is not a valid email.</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>valid_ip</td>
+<tr class="row-even"><td>valid_ip</td>
 <td>No</td>
 <td>Fails if the supplied IP is not valid. Accepts an optional parameter of ‘ipv4’ or
 ‘ipv6’ to specify an IP format.</td>
 <td>valid_ip[ipv6]</td>
 </tr>
-<tr class="row-even"><td>valid_url</td>
+<tr class="row-odd"><td>valid_url</td>
 <td>No</td>
 <td>Fails if field does not contain a valid URL.</td>
 <td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td>valid_date</td>
+<tr class="row-even"><td>valid_date</td>
 <td>No</td>
 <td>Fails if field does not contain a valid date. Accepts an optional parameter
 to matches a date format.</td>
 <td>valid_date[d/m/Y]</td>
 </tr>
-<tr class="row-even"><td>valid_cc_number</td>
+<tr class="row-odd"><td>valid_cc_number</td>
 <td>Yes</td>
 <td>Verifies that the credit card number matches the format used by the specified provider.
 Current supported providers are: American Express (amex), China Unionpay (unionpay),
@@ -1160,7 +1165,7 @@ the field data).</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014-2018 British Columbia Institute of Technology.
-      Last updated on Jul 07, 2018.
+      Last updated on Sep 04, 2018.
 
     </p>
   </div>
