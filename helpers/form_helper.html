@@ -1195,78 +1195,6 @@ class instead of the generic helper function.</p>
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="form_error">
-<code class="descname">form_error</code><span class="sig-paren">(</span><span class="optional">[</span><em>$field = ''</em><span class="optional">[</span>, <em>$prefix = ''</em><span class="optional">[</span>, <em>$suffix = ''</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#form_error" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$field</strong> (<em>string</em>) &#8211; Field name</li>
-<li><strong>$prefix</strong> (<em>string</em>) &#8211; Error opening tag</li>
-<li><strong>$suffix</strong> (<em>string</em>) &#8211; Error closing tag</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">HTML-formatted form validation error message(s)</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Returns a validation error message from the <a class="reference internal" href="../libraries/validation.html"><span class="doc">Form Validation Library</span></a>, associated with the specified field name.
-You can optionally specify opening and closing tag(s) to put around the error
-message.</p>
-<p>Example:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="c1">// Assuming that the &#39;username&#39; field value was incorrect:</span>
-<span class="k">echo</span> <span class="nx">form_error</span><span class="p">(</span><span class="s1">&#39;myfield&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;div class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span>
-
-<span class="c1">// Would produce: &lt;div class=&quot;error&quot;&gt;Error message associated with the &quot;username&quot; field.&lt;/div&gt;</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="function">
-<dt id="validation_errors">
-<code class="descname">validation_errors</code><span class="sig-paren">(</span><span class="optional">[</span><em>$prefix = ''</em><span class="optional">[</span>, <em>$suffix = ''</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#validation_errors" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>$prefix</strong> (<em>string</em>) &#8211; Error opening tag</li>
-<li><strong>$suffix</strong> (<em>string</em>) &#8211; Error closing tag</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">HTML-formatted form validation error message(s)</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Similarly to the <a class="reference internal" href="#form_error" title="form_error"><code class="xref php php-func docutils literal"><span class="pre">form_error()</span></code></a> function, returns all validation
-error messages produced by the <a class="reference internal" href="../libraries/validation.html"><span class="doc">Form Validation Library</span></a>, with optional opening and closing tags
-around each of the messages.</p>
-<p>Example:</p>
-<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">echo</span> <span class="nx">validation_errors</span><span class="p">(</span><span class="s1">&#39;&lt;span class=&quot;error&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="p">);</span>
-
-<span class="cm">/*</span>
-<span class="cm">        Would produce, e.g.:</span>
-
-<span class="cm">        &lt;span class=&quot;error&quot;&gt;The &quot;email&quot; field doesn&#39;t contain a valid e-mail address!&lt;/span&gt;</span>
-<span class="cm">        &lt;span class=&quot;error&quot;&gt;The &quot;password&quot; field doesn&#39;t match the &quot;repeat_password&quot; field!&lt;/span&gt;</span>
-
-<span class="cm"> */</span>
-</pre></div>
-</div>
-</dd></dl>
-
 </div>
 </div>
 
@@ -1293,7 +1221,7 @@ around each of the messages.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2014-2018 British Columbia Institute of Technology.
-      Last updated on Jul 12, 2018.
+      Last updated on Sep 12, 2018.
 
     </p>
   </div>
