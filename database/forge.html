@@ -378,8 +378,11 @@ below is for MySQL.</p>
 and unique keys with specific methods:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addPrimaryKey</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">);</span>
 <span class="c1">// gives PRIMARY KEY `blog_id` (`blog_id`)</span>
-
-<span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addUniqueKey</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;uri&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Foreign Keys help to enforce relationships and actions across your tables. For tables that support Foreign Keys,
+you may add them directly in forge:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">addUniqueKey</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;blog_id&#39;</span><span class="p">,</span> <span class="s1">&#39;uri&#39;</span><span class="p">));</span>
 <span class="c1">// gives UNIQUE KEY `blog_id_uri` (`blog_id`, `uri`)</span>
 </pre></div>
 </div>
@@ -440,6 +443,10 @@ and <em>DBCollat</em> values, as long as they are not empty (MySQL only).</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="c1">// Produces: ALTER TABLE &#39;tablename&#39; DROP FOREIGN KEY &#39;users_foreign&#39;</span>
 <span class="nv">$forge</span><span class="o">-&gt;</span><span class="na">dropForeignKey</span><span class="p">(</span><span class="s1">&#39;tablename&#39;</span><span class="p">,</span><span class="s1">&#39;users_foreign&#39;</span><span class="p">);</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">SQlite database driver does not support dropping of foreign keys.</p>
 </div>
 </div>
 <div class="section" id="renaming-a-table">

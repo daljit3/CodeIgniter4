@@ -287,11 +287,11 @@ format both XML and JSON responses:</p>
 type of response to return. If no matches are found between what the client requested and what you support, the first
 format in this array is what will be returned.</p>
 <p>Next, you need to define the class that is used to format the array of data. This must be a fully qualified class
-name, and the class must implement <strong>CodeIgniter\API\FormatterInterface</strong>. Formatters come out of the box that
+name, and the class must implement <strong>CodeIgniter\Format\FormatterInterface</strong>. Formatters come out of the box that
 support both JSON and XML:</p>
 <div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nv">$formatters</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;application/json&#39;</span> <span class="o">=&gt;</span> <span class="nx">\CodeIgniter\API\JSONFormatter</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
-    <span class="s1">&#39;application/xml&#39;</span>  <span class="o">=&gt;</span> <span class="nx">\CodeIgniter\API\XMLFormatter</span><span class="o">::</span><span class="na">class</span>
+    <span class="s1">&#39;application/json&#39;</span> <span class="o">=&gt;</span> <span class="nx">\CodeIgniter\Format\JSONFormatter</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;application/xml&#39;</span>  <span class="o">=&gt;</span> <span class="nx">\CodeIgniter\Format\XMLFormatter</span><span class="o">::</span><span class="na">class</span>
 <span class="p">];</span>
 </pre></div>
 </div>
